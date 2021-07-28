@@ -11,6 +11,8 @@
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "formik": "^2.2.9",
     "mongoose": "^5.13.3",

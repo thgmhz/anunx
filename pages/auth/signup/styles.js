@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) =>  ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  loading: {
+    display: 'block',
+    margin: '10px auto',
+  }
 }))
 
 export default useStyles
