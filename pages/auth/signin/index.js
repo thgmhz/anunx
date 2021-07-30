@@ -22,7 +22,7 @@ import useToasty from '../../../src/contexts/Toasty'
 import useStyles from './styles'
 import Alert from '@material-ui/lab/Alert'
 
-const Signin = () => {
+const Signin = ({ APP_URL }) => {
   const classes = useStyles()
   const router = useRouter()
   const { setToasty } = useToasty()
@@ -32,7 +32,7 @@ const Signin = () => {
 
   const handleGoogleLogin = () => {
     signIn('google', {
-      callbackUrl: 'http://localhost:3000/user/dashboard'
+      callbackUrl: `${APP_URL}/user/dashboard`
     })
   }
 
@@ -40,7 +40,7 @@ const Signin = () => {
     signIn('credentials', {
       email: values.email,
       password: values.password,
-      callbackUrl: 'http://localhost:3000/user/dashboard'
+      callbackUrl: `${APP_URL}/user/dashboard`
     })
   }
 
@@ -153,6 +153,12 @@ const Signin = () => {
       </Container>
     </TemplateDefault>
   )
+}
+
+Signin.getInitialProps = async function() {
+  return {
+    APP_URL: process.env.APP_URL
+  }
 }
 
 export default Signin
