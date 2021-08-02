@@ -15,12 +15,9 @@ const FileUpload = ({ files, errors, touched, setFieldValue }) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: (acceptedFile) => {      
-      const newFiles = acceptedFile.map(file => {        
-        return {
-          ...file,
-          preview: URL.createObjectURL(file)
-        }
-      })
+      const newFiles = acceptedFile.map(file => Object.assign(file, {
+        preview: URL.createObjectURL(file)
+      }))
 
       setFieldValue('files', [
         ...files,
@@ -30,7 +27,6 @@ const FileUpload = ({ files, errors, touched, setFieldValue }) => {
   })
 
   const handleRemoveFile = filePath => {
-    console.log(filePath, files)
     const newFileState = files.filter(file => file.path !== filePath)
     setFieldValue('files', newFileState)
   }
@@ -50,7 +46,7 @@ const FileUpload = ({ files, errors, touched, setFieldValue }) => {
       }
       <Box className={classes.thumbsContainer}>
         <Box className={classes.dropzone} {...getRootProps()}>
-          <input name="files" {...getInputProps()} />              
+          <input {...getInputProps()} />              
           <Typography variant="body2" color={errors && touched ? 'error' : 'textPrimary'}>
             Clique para adicionar ou arraste a imagem para aqui.
           </Typography>
